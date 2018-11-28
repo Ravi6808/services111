@@ -12,16 +12,6 @@ var app=angular.module("tut",[]);
     $scope.family = response.data;
 					  
    });
-   $scope.deleteUser = function(user) {
-   $http({
-
-     data : angular.toJson(user),
-     headers : {
-     'Content-Type' : 'application/json'
-   }
-   }).then( getUserDetails());
-  }
-
 
 });
 </script>
@@ -39,8 +29,6 @@ var app=angular.module("tut",[]);
 <td>{{f.name}}</td>
 <td>{{f.phone}}</td>
 <td>{{f.age}}</td>
-<td><a ng-click="editUser(user)" class="btn btn-primary btn-sm">Edit</a>
-           | <a ng-click="deleteUser(user)" class="btn btn-danger btn-sm">Delete</a></td>
       </tr>
 </table>
 </div>
