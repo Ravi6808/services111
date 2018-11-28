@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script  src="https://code.angularjs.org/1.3.14/angular.min.js"></script>
+<title>http service with JSON data</title>
+<script type="text/javascript">
+var app=angular.module("tut",[]);
+    app.controller("myCtrl",function($scope,$http){
+    $http.get("app/friends.json")
+    .then(function(response){
+    $scope.family = response.data;
+					  
+   });
+   $scope.deleteUser = function(user) {
+   $http({
+
+     data : angular.toJson(user),
+     headers : {
+     'Content-Type' : 'application/json'
+   }
+   }).then( getUserDetails());
+  }
+
+
+});
+</script>
+</head>
+
+<body ng-app="tut">
+<div ng-controller="myCtrl">
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Age</th>
+</tr>
+<tr ng-repeat="f in family">
+<td>{{f.name}}</td>
+<td>{{f.phone}}</td>
+<td>{{f.age}}</td>
+<td><a ng-click="editUser(user)" class="btn btn-primary btn-sm">Edit</a>
+           | <a ng-click="deleteUser(user)" class="btn btn-danger btn-sm">Delete</a></td>
+      </tr>
+</table>
+</div>
+</body>
+</html>
